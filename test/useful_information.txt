@@ -1,0 +1,10 @@
+Adding New Specs:
+
+Just add the spec in the test folder, end the file name with Spec.js, and you should be good to go.
+
+To run:
+
+<..>$ node specs.js
+
+
+

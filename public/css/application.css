@@ -1,0 +1,115 @@
+img {
+  border: none;
+}
+
+body {
+  background-color: #333;
+  font-family: "good-kitty-1","good-kitty-2";
+  overflow: hidden;
+  margin: 0;
+}
+
+#join_game_form {
+  width: 1024px;
+  height: 683px;
+  padding: 20px;
+  background: url("../images/tank_abstract.jpg") no-repeat;
+}
+
+#join_game_form .fields {
+  text-align: center;
+}
+
+.vote {
+  width: 1024px;
+  text-align: right;
+}
+
+header {
+  font-size: 1.5em;
+  text-align: center;
+  color: white;
+}
+
+canvas#battlefield {
+  float: left;
+}
+
+#scores {
+  float: left;
+  margin-left: 10px;
+  padding: 5px 5px 0 5px;
+  color: white;
+  font-size: 1.25em;
+  height: 695px;
+  min-width: 87px;
+}
+
+footer {
+  color: white;
+  text-align: center;
+  font-size: .9em;
+}
+
+footer a {
+  color:white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  font-weight: bold;
+}
+
+#scores th {
+  text-decoration: underline;
+}
+
+#scores td {
+  padding: 5px;
+}
+
+#scores td.score {
+  text-align: right;
+}
+
+#my_score,
+#top_scores {
+  width: 100%;
+}
+
+#my_score {
+  margin-bottom: 20px;
+}
+
+#controls {
+  float: left;
+  margin-top: 10px;
+  padding: 10px;
+  width: 980px; /* same as battlefield canvas width - own padding*/
+  color: white;
+}
+
+#vote {
+  float: left;
+  margin: 10px 0 0 10px;
+  color: white;
+  padding-top: 5px;
+}
+
+canvas#battlefield,
+#scores,
+#controls {
+  border: 1px solid white;
+}
+
+.control {
+  margin-left: 20px;
+}
+
+.control.first {
+  margin-left: 0;
+}
+
+.control.fire {
+  color: orange;
+}

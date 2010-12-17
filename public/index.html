@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nōdo Tanku</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/application.css" type="text/css" charset="utf-8">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/faye.js"></script>
+    <script type="text/javascript" src="/js/application.js"></script>
+    <script type="text/javascript" src="/js/Physics.js"></script>
+    <script type="text/javascript" src="/js/jquery.tanks.js"></script>
+    <script type="text/javascript" src="http://use.typekit.com/orc0kvn.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    
+    <script type="text/javascript" src="/js/socket.io.js"></script>
+  	<script>
+  		io.setPath('/js');
+  	</script>
+  </head>
+  <body>
+    
+    <div id="join_game_form">
+      <header>
+        Welcome to Nōdo Tanku (ノード タンク)
+      </header>
+      <div class="fields">
+        <input id="user_name" name="user_name" placeholder="Enter your handle">
+        <input type="submit" value="Enter Battle" onclick="tanksClient.joinGame($('#user_name').val());">
+      </div>
+    </div>
+    <div class="vote">
+      <a href="http://nodeknockout.com/teams/8thlight" target="nko" title="Help me win Node.js KO!"><img src="/images/voteko.png" alt="Help me win Node.js KO!" /></a>
+    </div>
+
+    
+    <div id="game" style="display:none;">
+      <canvas id="battlefield" width="1000" height="700"></canvas>
+      <div id="scores">
+        <table id="my_score">
+          <thead>
+            <tr>
+              <th colspan="2">My Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+        <table id="top_scores">
+          <thead>
+            <tr>
+              <th colspan="2">Top 10 Scores</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+      <div style="clear: both;">
+        <div id="controls">
+          
+          <span class="control first">
+            <label for="angle">Angle</label>
+            <input type="range" min="0" max="180" step="1" value="90" id="angle">
+            <!-- TODO: remove duplication between range value and initial span text -->
+            <span id="angle_value" style="display:inline-block; width: 1em">90</span>°
+          </span>
+          
+          <span class="control">
+            <label for="velocity">Velocity</label>
+            <input type="range" min="0" max="100" step="1" value="50" id="velocity">
+            <!-- TODO: remove duplication between range value and initial span text -->
+            <span id="velocity_value" style="display:inline-block; width: 1em">50</span> mph
+          </span>
+          
+          <span class="control fire">Press &lt;&nbsp;spacebar&nbsp;&gt; to fire!</span>
+        </div>
+        <div id="vote">
+          <a href="http://nodeknockout.com/teams/8thlight" target="nko" title="Help me win Node.js KO!"><img src="/images/voteko.png" alt="Help me win Node.js KO!" /></a>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    
+    <footer>
+      Brought to you by 
+        <span style="display:inline-block; width: 4em">
+          <a href="http://twitter.com/demmer12">@demmer</a>
+        </span> | 
+        <span style="display:inline-block; width: 6.5em">
+          <a href="http://twitter.com/justinmartinm">@justinmartinm</a>
+        </span> | 
+        <span style="display:inline-block; width: 4em">
+          <a href="http://twitter.com/jsuchy">@jsuchy</a>
+        </span> | 
+        <span style="display:inline-block; width: 4em">
+          <a href="http://twitter.com/skim">@skim</a>
+        </span>
+    </footer>
+  </body>
+</html>
