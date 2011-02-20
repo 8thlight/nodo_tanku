@@ -7,18 +7,20 @@
 
 ### Starting local server
 
-	$ node server.js
+<pre>$ node server.js</pre>
 
 ### Joyent Deployment Requirements
 
 * SSH - ask one of the Node Knockout team members to add your key
 
-	$ ssh node@tanku.no.de
+<pre>$ ssh node@tanku.no.de</pre>
 
 * git remote
 
-	$ git remote add joyent ssh://node@tanku.no.de/repo
-	$ git push joyent master
+<pre>
+$ git remote add joyent ssh://node@tanku.no.de/repo
+$ git push joyent master
+</pre>
 
 ### Production
 
