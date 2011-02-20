@@ -9,3 +9,17 @@
 
 	$ node server.js
 
+### Joyent Deployment Requirements
+
+* SSH - ask one of the Node Knockout team members to add your key
+
+	$ ssh node@tanku.no.de
+
+* git remote
+
+	$ git remote add joyent ssh://node@tanku.no.de/repo
+        $ git push joyent master
+
+### Production
+
+[http://tanku.no.de/](http://tanku.no.de)
