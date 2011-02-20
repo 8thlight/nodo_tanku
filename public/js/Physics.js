@@ -1,13 +1,13 @@
 var physics = {
   new_path : function(x_start,y_start, velocity, angle, scale, gravity) {
-		var SCALE_VELOCITY  = 1.5;
-		var g = 2;
-		if (scale){
-			SCALE_VELOCITY = scale;
-		}
-		if (gravity) {
-			g = gravity;
-		}
+    var SCALE_VELOCITY  = 1.5;
+    var g = 2;
+    if (scale){
+      SCALE_VELOCITY = scale;
+    }
+    if (gravity) {
+      g = gravity;
+    }
    var x_velocity = function(velocity, angle) { return (velocity * Math.cos(angle)) / SCALE_VELOCITY;}
    var y_velocity = function(velocity, angle) { return (velocity * Math.sin(angle)) / SCALE_VELOCITY;}
    var distance = function(velocity, angle, y_start) {
@@ -50,7 +50,7 @@ var physics = {
 
     end_point : function() {
      var dist = distance(velocity,angle,y_start);
-		 return x_start + dist;
+     return x_start + dist;
     },
 
     flight_time : function() {

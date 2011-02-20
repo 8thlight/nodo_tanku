@@ -6,7 +6,7 @@ var fs = require('fs'),
     url = require('url'),
     path = require('path');
 
-this.version = [0, 5, 0];
+this.version = [0, 5, 3];
 
 var mime = require('./node-static/mime');
 var util = require('./node-static/util');
@@ -236,9 +236,9 @@ this.Server.prototype.stream = function (pathname, files, buffer, res, callback)
                 mode: 0666,
                 bufferSize: 4096
             }).addListener('data', function (chunk) {
-                chunk.copy (buffer, offset, 0);
-                res.write  (chunk, 'binary');
-                offset   += chunk.length;
+                buffer.write(chunk, offset, 'binary');
+                res.write   (chunk, 'binary');
+                offset    += chunk.length;
             }).addListener('close', function () {
                 streamFile(files, offset);
             }).addListener('error', function (err) {

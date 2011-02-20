@@ -1,27 +1,40 @@
 var fs = require('fs');
 var sys = require('sys');
+var path = require('path');
 
-var filename = __dirname + '/jasmine-0.10.2.js';
+var filename = __dirname + '/jasmine-1.0.1.js';
 global.window = {
   setTimeout: setTimeout,
   clearTimeout: clearTimeout,
   setInterval: setInterval,
   clearInterval: clearInterval
 };
+
 var src = fs.readFileSync(filename);
-var jasmine = process.compile(src + '\njasmine;', filename);
+var jasmine;
+var minorVersion = process.version.match(/\d\.(\d)\.\d/)[1];
+switch (minorVersion) {
+  case "1":
+  case "2":
+    jasmine = process.compile(src + '\njasmine;', filename);
+    break;
+  default:
+    jasmine = require('vm').runInThisContext(src + "\njasmine;", filename);
+}
+
 delete global.window;
 
 function noop(){}
 
-jasmine.executeSpecsInFolder = function(folder, done, isVerbose, showColors){
+jasmine.executeSpecsInFolder = function(folder, done, isVerbose, showColors, matcher){
   var log = [];
   var columnCounter = 0;
   var start = 0;
   var elapsed = 0;
   var verbose = isVerbose || false;
+  var fileMatcher = new RegExp(matcher || "^.+\.(js|coffee)$");
   var colors = showColors || false;
-  var specs = jasmine.getAllSpecFiles(folder);
+  var specs = jasmine.getAllSpecFiles(folder, fileMatcher);
 
   var ansi = {
     green: '\033[32m',
@@ -32,14 +45,17 @@ jasmine.executeSpecsInFolder = function(folder, done, isVerbose, showColors){
 
   for (var i = 0, len = specs.length; i < len; ++i){
     var filename = specs[i];
-    require(filename.replace(/\.js$/, ""));
+    require(filename.replace(/\..*$/, ""));
   }
 
   var jasmineEnv = jasmine.getEnv();
   jasmineEnv.reporter = {
     log: function(str){
     },
-
+    
+    reportSpecStarting: function(runner) {
+    },
+    
     reportRunnerStarting: function(runner) {
       sys.puts('Started');
       start = Number(new Date);
@@ -111,21 +127,26 @@ jasmine.executeSpecsInFolder = function(folder, done, isVerbose, showColors){
   jasmineEnv.execute();
 };
 
-jasmine.getAllSpecFiles = function(dir){
-  var files = fs.readdirSync(dir);
+jasmine.getAllSpecFiles = function(dir, matcher){
   var specs = [];
 
-  for (var i = 0, len = files.length; i < len; ++i){
-    var filename = dir + '/' + files[i];
-    if (fs.statSync(filename).isFile() && filename.match(/\.js$/)){
-      specs.push(filename);
-    }else if (fs.statSync(filename).isDirectory()){
-      var subfiles = this.getAllSpecFiles(filename);
-      subfiles.forEach(function(result){
-        specs.push(result);
-      });
+  if (fs.statSync(dir).isFile() && dir.match(matcher)) {
+    specs.push(dir);
+  } else {
+    var files = fs.readdirSync(dir);
+    for (var i = 0, len = files.length; i < len; ++i){
+      var filename = dir + '/' + files[i];
+      if (fs.statSync(filename).isFile() && filename.match(matcher)){
+        specs.push(filename);
+      }else if (fs.statSync(filename).isDirectory()){
+        var subfiles = this.getAllSpecFiles(filename, matcher);
+        subfiles.forEach(function(result){
+          specs.push(result);
+        });
+      }
     }
   }
+  
   return specs;
 };
 
