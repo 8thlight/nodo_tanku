@@ -18,7 +18,7 @@
 * git remote
 
 	$ git remote add joyent ssh://node@tanku.no.de/repo
-        $ git push joyent master
+	$ git push joyent master
 
 ### Production
 
