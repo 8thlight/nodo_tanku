@@ -25,3 +25,7 @@ $ git push joyent master
 ### Production
 
 [http://tanku.no.de/](http://tanku.no.de)
+
+### Building Node on Production
+
+Joyent gives you freedom to install any version of Node.  Just follow the Node build instructions on GitHub.
