@@ -28,4 +28,10 @@ $ git push joyent master
 
 ### Building Node on Production
 
-Joyent gives you freedom to install any version of Node.  Just follow the Node build instructions on GitHub.
+Joyent gives you freedom to install any version of Node.  Just follow the Node build instructions on [GitHub](https://github.com/joyent/node/wiki/Installation).
+
+cd node_installs
+wget wget https://github.com/joyent/node/tarball/v0.4.6 --no-check-certificate
+tar -zxvf node-0.4.6.tar.gz
+cd node-0.4.6
+./configure --prefix=$HOME/local/node
