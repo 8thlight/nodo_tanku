@@ -21,15 +21,7 @@ function TanksClient () {
       canShoot = true;
 
   this.init = function() {
-    //    canvas = document.getElementById('battlefield');
-    //     ctx = canvas.getContext("2d");
-    //     
-    //     self.client = new Faye.Client(location.host + "/faye", {
-    //        timeout: 120
-    //      });
-    //      
-    // self.setupBayeuxHandlers();
-    // setInterval(self.updateCanvas, 35);
+    // Removing this function breaks ability to hit enter to join game
   };
 
   this.getBattlefield = function() {
